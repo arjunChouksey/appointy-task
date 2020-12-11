@@ -80,17 +80,39 @@ func createContact(w http.ResponseWriter, r *http.Request) {
 }
 
 // var client *mongo.Client
+func getContact(w http.ResponseWriter, r *http.Request) {
+	// set header.
+	w.Header().Set("Content-Type", "application/json")
+
+	var contact models.Contact
+	// we get params with mux.
+	var params = mux.Vars(r)
+
+	// string to primitive.ObjectID
+	id, _ := primitive.ObjectIDFromHex(params["id"])
+
+	// We create filter. If it is unnecessary to sort data for you, you can use bson.M{}
+	filter := bson.M{"_id": id}
+	err := collectionContact.FindOne(context.TODO(), filter).Decode(&contact)
+
+	if err != nil {
+		new_helper.GetError(err, w)
+		return
+	}
+
+	json.NewEncoder(w).Encode(contact)
+}
 
 func main() {
 	//Init Router
-	r := mux.NewRouter()
+	route := mux.NewRouter()
 
-	r.HandleFunc("/users", createUser).Methods("POST")
-	r.HandleFunc("/users/{id}", getUser).Methods("GET")
-	r.HandleFunc("/contacts", createContact).Methods("POST")
-	//r.HandleFunc("/contacts?user=<user id>&infection_timestamp=<timestamp>", listContact).Methods("GET")
+	route.HandleFunc("/users", createUser).Methods("POST")
+	route.HandleFunc("/users/{id}", getUser).Methods("GET")
+	route.HandleFunc("/contacts", createContact).Methods("POST")
+	route.HandleFunc("/contacts/{id}", getContact).Methods("GET")
 
 	config := helper.GetConfiguration()
-	log.Fatal(http.ListenAndServe(config.Port, r))
+	log.Fatal(http.ListenAndServe(config.Port, route))
 
 }
