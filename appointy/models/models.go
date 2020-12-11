@@ -16,9 +16,9 @@ type User struct {
 }
 
 type DOB struct {
-	date  int    `json:"date,omitempty" bson:"date,omitempty"`
+	date  int32  `json:"date,omitempty" bson:"date,omitempty"`
 	month string `json:"month,omitempty" bson:"month,omitempty"`
-	year  int    `json:"year,omitempty" bson:"year,omitempty"`
+	year  int32  `json:"year,omitempty" bson:"year,omitempty"`
 }
 
 type Name struct {
@@ -27,6 +27,8 @@ type Name struct {
 }
 
 type Contact struct {
-	UserIdOne primitive.ObjectID `json:"_id1,omitempty" bson:"_id1,omitempty"`
-	UserIdTwo primitive.ObjectID `json:"_id2,omitempty" bson:"_id2,omitempty"`
+	key       primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
+	UserIdOne string             `json:"_id1,omitempty" bson:"_id1,omitempty"`
+	UserIdTwo string             `json:"_id2,omitempty" bson:"_id2,omitempty"`
+	timestamp time.Time          `json:"timestamp" bson:"timestamp"`
 }
