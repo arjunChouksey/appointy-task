@@ -69,10 +69,10 @@ func createContact(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&contact)
 
 	// insert our book model.
-	result, err := collectionUser.InsertOne(context.TODO(), contact)
+	result, err := collectionContact.InsertOne(context.TODO(), contact)
 
 	if err != nil {
-		helper.GetError(err, w)
+		new_helper.GetError(err, w)
 		return
 	}
 
