@@ -14,7 +14,6 @@ import (
 )
 
 // ConnectDB : This is helper function to connect mongoDB
-// If you want to export your function. You must to start upper case function name. Otherwise you won't see your function when you import that on other class.
 func ConnectDB() *mongo.Collection {
 	config := GetConfiguration()
 	// Set client options
@@ -41,7 +40,6 @@ type ErrorResponse struct {
 }
 
 // GetError : This is helper function to prepare error model.
-// If you want to export your function. You must to start upper case function name. Otherwise you won't see your function when you import that on other class.
 func GetError(err error, w http.ResponseWriter) {
 
 	log.Fatal(err.Error())
@@ -62,7 +60,7 @@ type Configuration struct {
 	ConnectionString string
 }
 
-// GetConfiguration method basically populate configuration information from .env and return Configuration model
+// GetConfiguration method basically populate configuration
 func GetConfiguration() Configuration {
 	err := godotenv.Load("./.env")
 
