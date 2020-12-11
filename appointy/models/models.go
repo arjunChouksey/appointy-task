@@ -12,13 +12,13 @@ type User struct {
 	Name        *Name              `json:"name,omitempty" bson:"name,omitempty"`
 	DOB         *DOB               `json:"dob,omitempty" bson:"dob,omitempty"`
 	PhoneNumber string             `json:"phonenumber,omitempty" bson:"phonenumber,omitempty"`
-	timestamp   time.Time          `json:"timestamp" bson:"timestamp"`
+	Timestamp   time.Time          `json:"timestamp" bson:"timestamp"`
 }
 
 type DOB struct {
-	date  int32  `json:"date,omitempty" bson:"date,omitempty"`
-	month string `json:"month,omitempty" bson:"month,omitempty"`
-	year  int32  `json:"year,omitempty" bson:"year,omitempty"`
+	Date  int32  `json:"date,omitempty" bson:"date,omitempty"`
+	Month string `json:"month,omitempty" bson:"month,omitempty"`
+	Year  int32  `json:"year,omitempty" bson:"year,omitempty"`
 }
 
 type Name struct {
@@ -27,8 +27,8 @@ type Name struct {
 }
 
 type Contact struct {
-	key       primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
+	Key       primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	UserIdOne string             `json:"_id1,omitempty" bson:"_id1,omitempty"`
 	UserIdTwo string             `json:"_id2,omitempty" bson:"_id2,omitempty"`
-	timestamp time.Time          `json:"timestamp" bson:"timestamp"`
+	Timestamp time.Time          `json:"timestamp" bson:"timestamp"`
 }
